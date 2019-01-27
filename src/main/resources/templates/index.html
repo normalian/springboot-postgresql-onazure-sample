@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot with PostgreSQL on Microsoft Azure Sample</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+table tr th {
+	background-color: #000088;
+	color: white;
+}
+
+table tr td {
+	background-color: #eeeeee;
+}
+</style>
+</head>
+<body>
+	You have succeeded to deploy Spring Boot sample!
+	<br />
+	<p th:text="'message: ' + ${message} + '!'" />
+	<form action="/index" method="post">
+		<dl>
+			<dt>First name:</dt>
+			<dd>
+				<input type="text" name="firstName" value="firstname" />
+			</dd>
+			<dt>Last name:</dt>
+			<dd>
+				<input type="text" name="lastName" value="lastname" />
+			</dd>
+		</dl>
+		<input type="submit" value="create">
+	</form>
+	<hr />
+	<div th:if="${customers.size() > 0} == true">
+		<table>
+			<tr>
+				<th>Customer Info</th>
+			</tr>
+			<tr th:each="customer : ${customers}">
+				<td><p
+						th:text="${customer.firstName} + ', ' + ${customer.lastName}"></p></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
