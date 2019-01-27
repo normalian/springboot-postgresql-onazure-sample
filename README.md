@@ -1,0 +1,1 @@
+# springboot-postgresql-onazure-sample
