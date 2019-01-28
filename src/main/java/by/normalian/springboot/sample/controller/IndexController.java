@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.util.StringUtils;
 
 import by.normalian.springboot.sample.model.Customer;
 import by.normalian.springboot.sample.service.CustomerService;
@@ -44,10 +45,19 @@ public class IndexController {
 	public Model index(Model model, @RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName) {
 		Customer customer = new Customer(0, firstName, lastName);
-		LOGGER.debug("@@ input param: " + customer);
-		customerService.saveOrUpdate(customer);
+		if (StringUtils.isEmptyOrWhitespace(firstName) == false && StringUtils.isEmptyOrWhitespace(lastName) == false) {
+			LOGGER.debug("@@ input param: " + customer);
+			customerService.saveOrUpdate(customer);
+		}
 		this.index(model);
-		model.addAttribute("message", "Passed index methond as post");
+
+		// override message attribute
+		if (StringUtils.isEmptyOrWhitespace(firstName) == false && StringUtils.isEmptyOrWhitespace(lastName) == false) {
+			model.addAttribute("message", "Passed index methond as post successfully");
+		} else {
+			model.addAttribute("message",
+					"Passed index methond as post, but you input firstname or lastname as blank ");
+		}
 		return model;
 	}
 }

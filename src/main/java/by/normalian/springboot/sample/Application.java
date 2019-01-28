@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import by.normalian.springboot.sample.model.Customer;
 import by.normalian.springboot.sample.service.CustomerService;
 
-
 @SpringBootApplication
 public class Application {
 	private final Logger LOGGER = LoggerFactory.getLogger(Application.class);
@@ -27,7 +26,7 @@ public class Application {
 	public void init() throws Exception {
 		LOGGER.info("@@@ Insert sample records into customer table");
 		customerService.saveOrUpdate(new Customer(1, "Daichi", "Isami"));
-		customerService.saveOrUpdate(new Customer(2, "Yoichi", "Kawasaki"));
+		customerService.saveOrUpdate(new Customer(2, "Yoichi", "admirable-engineer"));
 	}
 
 	public Application(CustomerService customerService) {

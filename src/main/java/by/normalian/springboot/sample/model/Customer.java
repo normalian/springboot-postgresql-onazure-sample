@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
@@ -11,7 +13,14 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id = 0;
-	private String firstName, lastName;
+
+	@NotNull
+	@Size(min = 2, max = 40)
+	private String firstName;
+
+	@NotNull
+	@Size(min = 2, max = 40)
+	private String lastName;
 
 	// need to be used as Entity
 	public Customer() {

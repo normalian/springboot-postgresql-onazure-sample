@@ -9,9 +9,13 @@
 			</pattern>
 		</encoder>
 	</appender>
+	<appender name="aiAppender"
+		class="com.microsoft.applicationinsights.logback.ApplicationInsightsAppender">
+	</appender>
 	<logger name="by.normalian.springboot.sample" level="TRACE" />
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="aiAppender" />
 	</root>
 </configuration>
