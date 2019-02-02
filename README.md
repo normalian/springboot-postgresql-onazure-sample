@@ -37,7 +37,8 @@ Now, you can execute your Spring Boot sample like below! You can add your custom
 ![fig11.png](img/fig13.png "fig13.png")
 
 ## How to setup this sample - execution with Application Insights on your local machine (Optional)
-Create Application Insights instance like below on Microsoft Azure portal. Don't forget to specify "Application Typoe" as "Java web application".
+Create Application Insights instance like below on Microsoft Azure portal. Don't forget to specify "Application Type" as "Java web application".
+
 ![fig21.png](img/fig21.png "fig21.png")
 
 And pick up your instrumentation-key to specify your application. Next, update "springboot-postgresql-onazure-sample\src\main\resources\application.properties" to store log data into your Application Insight instance like below.
