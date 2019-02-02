@@ -3,6 +3,9 @@
 <head>
 <title>Spring Boot with PostgreSQL on Microsoft Azure Sample</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="">
+<meta name="author" content="Daichi Isami">
 <style>
 table tr th {
 	background-color: #000088;
@@ -13,35 +16,43 @@ table tr td {
 	background-color: #eeeeee;
 }
 </style>
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}" />
 </head>
 <body>
-	You have succeeded to deploy Spring Boot sample!
-	<br />
-	<p th:text="'message: ' + ${message} + '!'" />
-	<form action="/index" method="post">
-		<dl>
-			<dt>First name:</dt>
-			<dd>
-				<input type="text" name="firstName" placeholder="firstname" />
-			</dd>
-			<dt>Last name:</dt>
-			<dd>
-				<input type="text" name="lastName" placeholder="lastname" />
-			</dd>
-		</dl>
-		<input type="submit" value="create">
-	</form>
-	<hr />
-	<div th:if="${customers.size() > 0} == true">
-		<table>
-			<tr>
-				<th>Customer Info</th>
-			</tr>
-			<tr th:each="customer : ${customers}">
-				<td><p
-						th:text="${customer.firstName} + ', ' + ${customer.lastName}"></p></td>
-			</tr>
-		</table>
+	<div class="container">
+		<div class="page-header">
+			<h1>You have succeeded to deploy Spring Boot sample!</h1>
+		</div>
+		<div class="alert alert-info" role="alert"
+			th:if="${#strings.isEmpty(infoMessage)} == false">
+			<p th:text="'message: ' + ${infoMessage} + '!'" />
+		</div>
+		<div class="alert alert-warning" role="alert"
+			th:if="${#strings.isEmpty(warningMessage)} == false">
+			<p th:text="'message: ' + ${warningMessage} + '!'" />
+		</div>
+		<form action="/index" method="post">
+			<dl>
+				<dt>First name:</dt>
+				<dd>
+					<input type="text" name="firstName" placeholder="firstname" />
+				</dd>
+				<dt>Last name:</dt>
+				<dd>
+					<input type="text" name="lastName" placeholder="lastname" />
+				</dd>
+			</dl>
+			<input type="submit" value="create" class="btn btn-primary">
+		</form>
+		<hr />
+		<div class="list-group" th:if="${customers.size() > 0} == true">
+			<a href="#" class="list-group-item active"> Customer Info </a>
+			<div th:each="customer : ${customers}">
+				<a href="#" class="list-group-item"
+					th:text="${customer.firstName} + ', ' + ${customer.lastName}"></a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

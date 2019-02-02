@@ -35,7 +35,7 @@ public class IndexController {
 
 	@GetMapping("/index")
 	public Model index(Model model) {
-		model.addAttribute("message", "Passed index methond as get");
+		model.addAttribute("infoMessage", "Passed index methond as get successfully");
 		List<Customer> customers = customerService.findAll();
 		model.addAttribute("customers", customers);
 		return model;
@@ -53,10 +53,10 @@ public class IndexController {
 
 		// override message attribute
 		if (StringUtils.isEmptyOrWhitespace(firstName) == false && StringUtils.isEmptyOrWhitespace(lastName) == false) {
-			model.addAttribute("message", "Passed index methond as post successfully");
+			model.addAttribute("infoMessage", "Passed index methond as post successfully");
 		} else {
-			model.addAttribute("message",
-					"Passed index methond as post, but you input firstname or lastname as blank ");
+			model.addAttribute("warningMessage",
+					"You couldn't post new customer, because you input firstname or lastname as blank ");
 		}
 		return model;
 	}
